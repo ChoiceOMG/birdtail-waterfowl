@@ -1,0 +1,31 @@
+/* LandingPage.css */
+.section-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .content-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .content-paper {
+    padding: 10px;
+  }
+  
+  .video-column {
+    display: flex;
+    align-items: center;
+  }
+  
+  .section-video {
+    max-width: 100%;
+  }
+  
