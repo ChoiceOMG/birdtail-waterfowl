@@ -2,19 +2,29 @@ import React, { useState } from "react";
 import { Typography, Paper, Grid, Link } from "@mui/material";
 import ctaList from "@/components/cta/cta";
 import styles from "@/styles/landingPage.module.css";
-import carousel, { carouselItems } from "@/components/carousel/carousel";
+import Carousel from "@/components/carousel/carousel";
+import imageGallery from "@/components/imageGallery/imageGallery"; // Updated the component name to start with a capital letter
+import ImageGallery from "@/components/imageGallery/imageGallery";
 
-const LandingPage = () => {
-  const handleVideoClick = (videoElement) => {
+interface CtaItem {
+  link: string;
+  title: string;
+  content: string;
+  videoUrl: string;
+}
+
+const LandingPage: React.FC = () => {
+  const handleVideoClick = (videoElement: HTMLVideoElement) => {
     if (videoElement.paused) {
       videoElement.play();
     } else {
       videoElement.pause();
     }
   };
+
   return (
     <div>
-      {ctaList.map((section, index) => (
+      {ctaList.map((section: CtaItem, index: number) => (
         <div key={index} className="section-container">
           <Grid key={index} container spacing={2}>
             <Grid item xs={6} className="content-column">
@@ -31,7 +41,7 @@ const LandingPage = () => {
             <Grid item xs={6} className="video-column">
               {/* Right column for the video */}
               <video
-                onClick={(e) => handleVideoClick(e.target)}
+                onClick={(e) => handleVideoClick(e.target as HTMLVideoElement)}
                 controls
                 width="100%"
                 height="auto"
@@ -44,7 +54,8 @@ const LandingPage = () => {
           </Grid>
         </div>
       ))}
-      <carousel />
+      <Carousel />
+      <ImageGallery /> {/* Updated component name to start with a capital letter */}
     </div>
   );
 };
