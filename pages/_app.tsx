@@ -1,7 +1,16 @@
-import "@/styles/landingPage.module.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import "../styles/landingPage.module.css"; // Adjust this import
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+const theme = createTheme(); // Create or import your theme object here
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
+
+export default MyApp;

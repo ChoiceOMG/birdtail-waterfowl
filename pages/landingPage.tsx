@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Typography, Paper, Grid, Link } from "@mui/material";
-import ctaList from "@/components/cta/cta";
-import styles from "@/styles/landingPage.module.css";
-import Carousel from "@/components/carousel/carousel";
-import imageGallery from "@/components/imageGallery/imageGallery"; // Updated the component name to start with a capital letter
-import ImageGallery from "@/components/imageGallery/imageGallery";
+import ctaList from "../components/cta/cta";
+import Carousel from "../components/carousel/carousel";
+import ImageGallery from "../components/imageGallery/imageGallery";
+import "../styles/landingPage.module.css"
+import Footer from "../components/footer/footer";
 
 interface CtaItem {
   link: string;
@@ -55,7 +55,8 @@ const LandingPage: React.FC = () => {
         </div>
       ))}
       <Carousel />
-      <ImageGallery /> {/* Updated component name to start with a capital letter */}
+      <ImageGallery /> 
+      <Footer />
     </div>
   );
 };

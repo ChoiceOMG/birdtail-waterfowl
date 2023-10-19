@@ -1,50 +1,70 @@
-import React from "react";
-import {
-  CarouselContainer,
-  CarouselSlide,
-  CarouselImage,
-  SectionDetails,
-  SectionTitle,
-  SectionDescription,
-} from "./CarouselStyles";
+import { Paper, Typography, Link } from '@mui/material';
+import { styled } from '@mui/system';
+import Stack from '@mui/material/Stack';
+import React from 'react';
+import { useTheme } from '@mui/material/styles'; // Import useTheme
 
-const Carousel = () => {
-  const sections = [
-    {
-      image: "/image1.jpg",
-      title: "Section 1 Title",
-      description: "Section 1 Description",
-    },
-    {
-      image: "/image2.jpg",
-      title: "Section 2 Title",
-      description: "Section 2 Description",
-    },
-    {
-      image: "/image3.jpg",
-      title: "Section 3 Title",
-      description: "Section 3 Description",
-    },
-    {
-      image: "/image4.jpg",
-      title: "Section 4 Title",
-      description: "Section 4 Description",
-    },
-  ];
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  width : '25%'
+}));
+
+const ItemContent = ({ title, imageSrc, description, linkTo }) => {
+  const theme = useTheme(); // Get the theme using useTheme
 
   return (
-    <CarouselContainer>
-      {sections.map((section, index) => (
-        <CarouselSlide key={index}>
-          <CarouselImage src={section.image} alt={section.title} />
-          <SectionDetails>
-            <SectionTitle>{section.title}</SectionTitle>
-            <SectionDescription>{section.description}</SectionDescription>
-          </SectionDetails>
-        </CarouselSlide>
-      ))}
-    </CarouselContainer>
+    <div>
+      <img src={imageSrc} alt={title} style={{ width: '100%' }}/>
+      <Typography variant="h6" style={{ ...theme.typography.body2 }}>{title}</Typography>
+      <Typography style={{ ...theme.typography.body2 }}>{description}</Typography>
+      <Link href={linkTo}>Learn More</Link>
+    </div>
   );
 };
 
-export default Carousel;
+export default function ResponsiveStack() {
+  return (
+    <div>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={{ xs: 1, sm: 2, md: 4 }}
+      >
+        <Item>
+          <ItemContent
+            title="Item 1"
+            imageSrc="/imageGallery/img.jpg"
+            description="Description for Item 1."
+            linkTo="/link1"
+          />
+        </Item>
+        <Item>
+          <ItemContent
+            title="Item 2"
+            imageSrc="/imageGallery/img.jpg"
+            description="Description for Item 2."
+            linkTo="/link2"
+          />
+        </Item>
+        <Item>
+          <ItemContent
+            title="Item 3"
+            imageSrc="/imageGallery/img.jpg"
+            description="Description for Item 3."
+            linkTo="/link3"
+          />
+        </Item>
+        <Item>
+          <ItemContent
+            title="Item 3"
+            imageSrc="/imageGallery/img.jpg"
+            description="Description for Item 3."
+            linkTo="/link3"
+          />
+        </Item>
+      </Stack>
+    </div>
+  );
+}
