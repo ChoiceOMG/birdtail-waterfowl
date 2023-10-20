@@ -4,27 +4,44 @@ import Stack from '@mui/material/Stack';
 import React from 'react';
 import { useTheme } from '@mui/material/styles'; // Import useTheme
 
+interface ItemContentProps {
+  title: string;
+  imageSrc: string;
+  description: string;
+  linkTo: string;
+}
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  padding: theme.spacing(1),
+  padding: theme.spacing(4),
   textAlign: 'center',
   color: theme.palette.text.secondary,
   width : '25%'
 }));
 
-const ItemContent = ({ title, imageSrc, description, linkTo }) => {
-  const theme = useTheme(); // Get the theme using useTheme
+const ItemContent: React.FC<ItemContentProps> = ({ 
+  title, 
+  imageSrc, 
+  description, 
+  linkTo 
+}: ItemContentProps) => {
+  const theme = useTheme();  
 
   return (
     <div>
-      <img src={imageSrc} alt={title} style={{ width: '100%' }}/>
-      <Typography variant="h6" style={{ ...theme.typography.body2 }}>{title}</Typography>
-      <Typography style={{ ...theme.typography.body2 }}>{description}</Typography>
-      <Link href={linkTo}>Learn More</Link>
+      <Link href={linkTo} underline="none">
+        <img src={imageSrc} alt={title} style={{ width: '100%', cursor: 'pointer' }}/>
+      </Link>
+      <Typography variant="h6" style={{ ...theme.typography.body2, fontWeight: 'bold',marginTop: theme.spacing(2) }}>
+        <Link href={linkTo} underline="always" style={{ color: theme.palette.text.primary, cursor: 'pointer' }}>
+          {title}
+        </Link>
+      </Typography>
+      <Typography style={{ ...theme.typography.body2,marginTop: theme.spacing(2) }}>
+        {description}
+      </Typography>
     </div>
   );
 };
-
 export default function ResponsiveStack() {
   return (
     <div>
@@ -34,33 +51,35 @@ export default function ResponsiveStack() {
       >
         <Item>
           <ItemContent
-            title="Item 1"
+            title="About Us"
             imageSrc="/imageGallery/img.jpg"
-            description="Description for Item 1."
+            description="Guiding for waterfowl in one of the most concentrated flyways in Canada has provided me with a great waterfowl education. Working in a professional environment has taught a great deal about running a successful waterfowl operation."
             linkTo="/link1"
           />
         </Item>
         <Item>
           <ItemContent
-            title="Item 2"
+            title="Lodging and Amenities"
             imageSrc="/imageGallery/img.jpg"
-            description="Description for Item 2."
+            description="6 Private cabins that accommodate 2-4 hunters
+
+            Full Bath with Plumbing | Bunk Beds | Wifi | Bar Fridge | Electric Heat | Cedar Interior | Cozy Northern Experience"
             linkTo="/link2"
           />
         </Item>
         <Item>
           <ItemContent
-            title="Item 3"
+            title="The Manitoba Hunting Experience"
             imageSrc="/imageGallery/img.jpg"
-            description="Description for Item 3."
+            description="Our goal is to deliver you the ultimate hunting or fishing experience with first class lodging at a price you can afford. Book your waterfowl hunt of a lifetime now through Birdtail Waterfowl, the best hunting outfitter in Canada!"
             linkTo="/link3"
           />
         </Item>
         <Item>
           <ItemContent
-            title="Item 3"
+            title="Duck Hunting"
             imageSrc="/imageGallery/img.jpg"
-            description="Description for Item 3."
+            description="Few things in life compare to the thrill of a heart pounding duck hunt. Birdtail Waterfowl knows how to show our guests the fast paced almost frantic waves of ducks buzzing decoy spreads."
             linkTo="/link3"
           />
         </Item>

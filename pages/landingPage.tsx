@@ -8,10 +8,16 @@ import Footer from "../components/footer/footer";
 
 interface CtaItem {
   link: string;
-  title: string;
-  content: string;
+  title?: string;
+  content?: string;
   videoUrl: string;
 }
+
+const getBackgroundColor = (index: number) => {
+  return index % 2 === 0 ? "#081526" : "#6c757d";
+}
+
+
 
 const LandingPage: React.FC = () => {
   const handleVideoClick = (videoElement: HTMLVideoElement) => {
@@ -26,31 +32,67 @@ const LandingPage: React.FC = () => {
     <div>
       {ctaList.map((section: CtaItem, index: number) => (
         <div key={index} className="section-container">
-          <Grid key={index} container spacing={2}>
-            <Grid item xs={6} className="content-column">
-              {/* Left column for content */}
-              <Link href={section.link}>
-                <Typography variant="h5" className="section-title">
-                  {section.title}
-                </Typography>
-              </Link>
-              <Paper className="content-paper">
-                <Typography variant="body1">{section.content}</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={6} className="video-column">
-              {/* Right column for the video */}
-              <video
-                onClick={(e) => handleVideoClick(e.target as HTMLVideoElement)}
-                controls
-                width="100%"
-                height="auto"
-                className="section-video"
+          <Grid key={index} container spacing={0}>
+            {index === 0 && !section.title && !section.content ? (
+              // Special styling for the first item if it lacks title and content
+              <Grid 
+                item xs={12} 
+                style={{
+                  backgroundColor: '#2b2b2b',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100vh' // Or choose a specific height you want
+                }}
               >
-                <source src={section.videoUrl} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </Grid>
+                <video
+                  onClick={(e) => handleVideoClick(e.target as HTMLVideoElement)}
+                  controls
+                  width="80%"  // Making the video bigger by setting width to 80%
+                  height="auto"
+                  className="section-video"
+                  style={{ display: 'block' }}
+                >
+                  <source src={section.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </Grid>
+            ) : (
+              <>
+                <Grid 
+                  item xs={6} 
+                  className="content-column" 
+                  style={{
+                    backgroundColor: getBackgroundColor(index),
+                    padding: '20px'  // Add padding from the edge
+                  }}
+                >
+                  {/* Left column for content */}
+                  <Link href={section.link} underline="always" >  
+                    <Typography variant="h2" className="section-title" style={{ color: 'white' }}> 
+                      {section.title}
+                    </Typography>
+                  </Link>
+                  <Typography variant="body1" style={{ color: 'white' }}> 
+                    {section.content}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} className="video-column">
+                  {/* Right column for the video */}
+                  <video
+                    onClick={(e) => handleVideoClick(e.target as HTMLVideoElement)}
+                    controls
+                    width="100%"
+                    height="auto"
+                    className="section-video"
+                    style={{ display: 'block' }}
+                  >
+                    <source src={section.videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </Grid>
+              </>
+            )}
           </Grid>
         </div>
       ))}
@@ -59,6 +101,9 @@ const LandingPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
-
+  
+  
+  
+      }
 export default LandingPage;
+      
