@@ -45,13 +45,12 @@ public/: Directory for static assets like images.
 3.Open a pull request with a description of the changes you've made.
 
 ## Additional Resources
-
-Next.js Documentation
-React Documentation
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
 
 ## Discover More
-
 For deeper insights into Next.js, consider these resources:
-Next.js Guide - delve into Next.js capabilities and its API.
-Dive into Next.js - an engaging tutorial on Next.js.
-Next.js GitHub page - we appreciate your thoughts and contributions!
+- [Next.js Guide](https://nextjs.org/learn) - delve into Next.js capabilities and its API.
+- [Dive into Next.js](https://nextjs.org/docs/getting-started) - an engaging tutorial on Next.js.
+- [Next.js GitHub page](https://github.com/vercel/next.js) - we appreciate your thoughts and contributions!
+
