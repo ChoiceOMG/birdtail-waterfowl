@@ -1,4 +1,5 @@
-import { getPosts } from '../lib/wordpressGraphQL';
+import { getPosts } from "../lib/wordpressGraphQL";
+import React, { useEffect, useState } from "react";
 
 type Post = {
   databaseId: number;
@@ -10,10 +11,19 @@ type PostsPageProps = {
   posts: Post[];
 };
 
-function PostsPage({ posts }: PostsPageProps) {
+function PostsPage() {
+  const [posts, setPosts] = useState([]);
+  const fetchPosts = async () => {
+    const result = await getPosts();
+    console.log("my result", result);
+    setPosts(result);
+  };
+  useEffect(() => {
+    fetchPosts();
+  }, []);
   return (
     <div>
-      {posts.map((post) => (
+      {posts.map((post: any) => (
         <div key={post.databaseId}>
           <h2>{post.title}</h2>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -23,13 +33,19 @@ function PostsPage({ posts }: PostsPageProps) {
   );
 }
 
-export async function getServerSideProps(): Promise<{ props: PostsPageProps }> {
-  const posts = await getPosts();
-  return {
-    props: {
-      posts,
-    },
-  };
-}
+// export async function getServerSideProps(): Promise<{ props: PostsPageProps }> {
+//   let posts;
+//   try{
+//    posts = await getPosts();
+//    console.log("posts",posts)
+//   }catch(err){
+//     console.log("error",err)
+//   }
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }
 
 export default PostsPage;

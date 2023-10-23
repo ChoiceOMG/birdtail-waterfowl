@@ -14,7 +14,6 @@
     "@mui/icons-material": "^5.14.13",
     "@mui/material": "^5.14.13",
     "@types/next": "^9.0.0",
-    "@types/react": "^18.2.29",
     "autoprefixer": "^10.4.16",
     "bootstrap": "^5.3.2",
     "graphql": "^16.8.1",
@@ -29,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "20.8.7",
+    "@types/react": "^18.2.31",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0"
   }
