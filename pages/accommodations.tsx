@@ -1,29 +1,29 @@
-import { getContact } from "../lib/wordpressGraphQL";
+import { getAccommodations } from "../lib/wordpressGraphQL";
 import React, { useEffect, useState } from "react";
 
-type Contact = {
+type Accommodation = {
   databaseId: number;
   title: string;
   content: string;
 };
 
-type ContactPageProps = {
-  contacts: Contact[];
+type accommodationsPageProps = {
+  accommodations: Accommodation[];
 };
 
-function ContactPage() {
-  const [contacts, setContacts] = useState([]);
+function PostsPage() {
+  const [accommodations, setAccommodations] = useState([]);
   const fetchPosts = async () => {
-    const result = await getContact();
+    const result = await getAccommodations();
     console.log("my result", result);
-    setContacts(result);
+    setAccommodations(result);
   };
   useEffect(() => {
     fetchPosts();
   }, []);
   return (
     <div>
-      {contacts.map((post: any) => (
+      {accommodations.map((post: any) => (
         <div key={post.databaseId}>
           <h2>{post.title}</h2>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -32,5 +32,4 @@ function ContactPage() {
     </div>
   );
 }
-
-export default ContactPage;
+export default PostsPage;
